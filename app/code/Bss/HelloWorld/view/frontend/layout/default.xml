@@ -1,6 +1,40 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceContainer name="header.panel">
-        <block class="Bss\HelloWorld\Block\Header" name="header.links" template="Bss_HelloWorld::header.phtml" />
-    </referenceContainer>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Bss_HelloWorld::css/styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header.container">
+            <referenceBlock name="header.links">
+                <!-- remove block name header message wellcome -->
+                <referenceBlock   name="header" remove="true" />
+                <!-- Create block customLink and use before to sort block to first item -->
+                <block class="Bss\HelloWorld\Block\CustomLink" name="custom.link" as="header_custom_link" before="-" template="Bss_HelloWorld::customLink.phtml" >
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Custom Link Data</argument>
+                    </arguments>
+                </block>
+                <!-- <referenceBlock class="Bss\HelloWorld\Block\Header\Logo" name="logo" template="Bss_HelloWorld::header\logo.phtml" /> -->
+                <referenceBlock class="Bss\HelloWorld\Block\Header\Logo" name="logo" template="Bss_HelloWorld::header\logo.phtml">
+                    <arguments>
+                        <argument name="logoPathResolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoPathResolver</argument>
+                        <argument name="logo_size_resolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoSizeResolver</argument>
+                    </arguments>
+                </referenceBlock>
+            </referenceBlock>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <block  class="Magento\Cms\Block\Block" name="footer.top" as="footer_top" before="-" template="Bss_HelloWorld::footer\top.phtml" >
+                <arguments>
+                    <argument name="block_id" xsi:type="string" >footer_top</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
 </page>
