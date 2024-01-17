@@ -21,6 +21,7 @@
                     </arguments>
                 </block>
                 <!-- <referenceBlock class="Bss\HelloWorld\Block\Header\Logo" name="logo" template="Bss_HelloWorld::header\logo.phtml" /> -->
+                <!-- change logo -->
                 <referenceBlock class="Bss\HelloWorld\Block\Header\Logo" name="logo" template="Bss_HelloWorld::header\logo.phtml">
                     <arguments>
                         <argument name="logoPathResolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoPathResolver</argument>
@@ -30,6 +31,7 @@
             </referenceBlock>
         </referenceContainer>
         <referenceContainer name="footer">
+            <!-- Create block name footer top and use before to sort block to first item -->
             <block  class="Magento\Cms\Block\Block" name="footer.top" as="footer_top" before="-" template="Bss_HelloWorld::footer\top.phtml" >
                 <arguments>
                     <argument name="block_id" xsi:type="string" >footer_top</argument>
