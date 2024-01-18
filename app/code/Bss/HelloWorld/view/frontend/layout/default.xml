@@ -7,7 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Bss_HelloWorld::css/styles.css"/>
+        <css src="Bss_HelloWorld::css/theme.css"/>
     </head>
     <body>
         <referenceContainer name="header.container">
@@ -30,6 +30,7 @@
                 </referenceBlock>
             </referenceBlock>
         </referenceContainer>
+        <!-- <move element="copyright" destination="footer" /> -->
         <referenceContainer name="footer">
             <!-- Create block name footer top and use before to sort block to first item -->
             <block  class="Magento\Cms\Block\Block" name="footer.top" as="footer_top" before="-" template="Bss_HelloWorld::footer\top.phtml" >
@@ -37,6 +38,25 @@
                     <argument name="block_id" xsi:type="string" >footer_top</argument>
                 </arguments>
             </block>
+            <referenceBlock class="Magento\Cms\Block\Block" name="footer_links" template="Bss_HelloWorld::footer\links.phtml">
+                <arguments>
+                    <argument name="block_id" xsi:type="string" >footer_links</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="copyright" remove="true" >
+
+                </referenceBlock>
+            <container name="footer.bottoom.content.custom" htmlTag="div" htmlClass="footer-bottom-content" after="-">
+                <block name="copyright-new" template="Bss_HelloWorld::footer\copyRight.phtml" >
+
+                </block>
+                <block class="Magento\Cms\Block\Block" name="footer_bottom_right" template="Bss_HelloWorld::footer\bottomRight.phtml" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string" >footer_bottom_right</argument>
+                    </arguments>
+                </block>
+            </container>
+            <referenceBlock class="Bss\HelloWorld\Block\Subscribe" name="form.subscribe" template="Bss_HelloWorld::subscribe.phtml" />
         </referenceContainer>
     </body>
 </page>

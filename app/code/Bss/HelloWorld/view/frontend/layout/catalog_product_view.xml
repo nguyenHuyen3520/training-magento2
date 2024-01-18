@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Bss_HelloWorld::css/catalog_product_view.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <!-- remove block stock sku -->
+            <referenceContainer name="product.info.stock.sku" remove="true" />
+            <!-- end -->
+            <!-- remove block info review -->
+            <referenceBlock name="product.info.review" remove="true" />
+            <!-- end -->
+            <!-- create new container with name product.info.price.box -->
+            <container name="product.info.price.box"  htmlTag="div" htmlClass="product-infor-price-box"  />
+            <!-- end -->
+            <!-- create container with name  product.info.box-->
+            <container name="product.info.box" htmlTag="div"  htmlClass="product_info_box" />
+            <!-- end -->
+        </referenceContainer>
+        <!-- move the newly created container to inside container product.info.main and set position after block product.info.review  -->
+        <move element="product.info.price.box" destination="product.info.main"  after="product.info.review" />
+        <!-- end -->
+        <!-- move block name product.info.social to inside container name product.info.main and set position after block product.info.price.box  -->
+        <move element="product.info.social" destination="product.info.main" after="product.info.price.box"  />
+        <!-- end -->
+        <!-- move block name product.info.details to inside container name product.info.main and set position before block product.info.social  -->
+        <move element="product.info.details" destination="product.info.main"  before="product.info.social" />
+        <!-- end -->
+        <!-- move container name product.info.price to inside container name product.info.price.box and set position first item  -->
+        <move  element="product.info.price" destination="product.info.price.box" before="-"   />
+        <!-- end -->
+        <!-- move block name product to inside container name product.info.price.box   -->
+        <move  element="product.info" destination="product.info.price.box"   />
+        <!-- end -->
+        <!-- move container name product.info.box to inside inside container name product.info.box and set position first item  -->
+        <move element="product.info.box" destination="content"  before="-" />
+        <!-- end -->
+        <!-- move container name product.info.box to inside inside container name product.info.box and set position first item  -->
+        <move element="product.info.media" destination="product.info.box"  before="-" />
+        <!-- end -->
+        <!-- move container name product.info.main to inside inside container name product.info.box -->
+        <move element="product.info.main" destination="product.info.box"  />
+        <!-- end -->
+    </body>
+</page>

@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Bss\HelloWorld\Block\Subscribe $block */
+?>
+<div class="block newsletter">
+    <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
+    <div class="content">
+        <div style="padding: 10px;">
+            <strong style="color: #7d7877;">Subcrible or newsletter</strong>
+            <div style="width: 100%; background-color: #d6d6d6; height: 3px; margin-top: 10px; margin-bottom: 20px;">
+            </div>
+            <p style="color: #7d7877; marginTop: 37px;">Laos alongside many of its Southeast Asian neighbours, is well
+                known for producing counterfeit goods of all types, and with the</p>
+        </div>
+        <form class="form subscribe" novalidate action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>" method="post" data-mage-init='{"validation": {"errorClass": "mage-error"}}' id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control" style="margin-left: 10px;">
+                    <label for="newsletter">
+                        <span class="label">
+                            <?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?>
+                        </span>
+                        <input name="email" type="email" id="newsletter" placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}" />
+                    </label>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" style="background-color: #E8849D; color: #ffffff;" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>" type="submit" aria-label="Subscribe">
+                    <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "newsletter-validate-detail"
+            }
+        }
+    }
+</script>
