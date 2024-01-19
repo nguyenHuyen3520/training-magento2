@@ -23,6 +23,40 @@
             <!-- create container with name  product.info.box-->
             <container name="product.info.box" htmlTag="div"  htmlClass="product_info_box" />
             <!-- end -->
+            <referenceBlock name="product.info.form.content">
+                <!-- <block class="Magento\Catalog\Block\Product\View" name="contact.for.price.button" template="Vendor_Module::product/contactForPriceBuntton.phtml" after="-" /> -->
+            </referenceBlock>
+            <referenceBlock name="product.info.details">
+                <block class="Magento\Framework\View\Element\Text\ListText" name="product.custom-info.tab" as="custom-info.tab" group="detailed_info">
+                    <arguments>
+                        <argument name="title" translate="true" xsi:type="string">CUSTOM TAB</argument>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+            <referenceBlock name="product.custom-info.tab">
+                <block class="Magento\Cms\Block\Block" name="block_tab_product_details">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">custom-info</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+            <!-- <block class="Bss\HelloWorld\Block\Product\CategoryProducts" name="category.products" template="Bss_HelloWorld::product\categoryProducts.phtml" /> -->
+        </referenceContainer>
+        <referenceContainer name="content.aside">
+            <container name="category.product.custom.wrapper" htmlTag="div" after="-" >
+                <block class="Magento\Cms\Block\Block" name="category.products.custom" template="Bss_HelloWorld::product\productListCustom.phtml"
+                after="-"
+                 >
+                    <!-- after="product.info.upsell" -->
+                    <arguments>
+                        <argument name="block_id" xsi:type="string" >product_list_custom</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content.aside">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.contact-for-sale-price" template="Bss_HelloWorld::product/contactForPriceButton.phtml" before="-" />
         </referenceContainer>
         <!-- move the newly created container to inside container product.info.main and set position after block product.info.review  -->
         <move element="product.info.price.box" destination="product.info.main"  after="product.info.review" />
